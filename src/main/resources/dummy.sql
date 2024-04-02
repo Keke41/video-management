@@ -1,0 +1,6 @@
+-- INSERT INTO "CAMERA" (ID, TYPE) VALUES
+-- (11, 'Imported lead'),
+-- (12, 'Not contacted'),
+-- (13, 'Contacted'),
+-- (14, 'Customer'),
+-- (15, 'Closed (lost)');
