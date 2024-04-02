@@ -6,17 +6,23 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
+import video.management.camera.entity.Camera;
 import video.management.video.entity.Video;
+
+import java.util.List;
 
 public class VideoForm extends FormLayout {
 
     TextField name = new TextField("Name");
+
+    ComboBox<Camera> camera = new ComboBox<>("Camera");
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
@@ -25,9 +31,11 @@ public class VideoForm extends FormLayout {
     Binder<Video> binder = new BeanValidationBinder<>(Video.class);
 
 
-    public VideoForm() {
+    public VideoForm(List<Camera> cameras) {
         binder.bindInstanceFields(this);
-        add(name, createButtonsLayout());
+        camera.setItems(cameras);
+        camera.setItemLabelGenerator(Camera::getType);
+        add(name, camera,createButtonsLayout());
     }
 
     private Component createButtonsLayout() {

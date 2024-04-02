@@ -11,24 +11,32 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import video.management.camera.entity.Camera;
 import video.management.video.entity.Video;
 import video.management.video.repository.VideoRepository;
+import video.management.camera.repository.CameraRepository;
 import video.management.web.MainLayout;
+
+import java.util.Collections;
+import java.util.Optional;
 
 @PageTitle("Viki Szakdoga")
 @Route(value = "video", layout = MainLayout.class)
 public class VideoView extends VerticalLayout {
     private final VideoRepository repo;
+
+    private final CameraRepository cameraRepository;
     private final Grid<Video> grid;
     private final TextField filterText = new TextField();
     private VideoForm form;
 
-    public VideoView(VideoRepository repo) {
+    public VideoView(VideoRepository repo, CameraRepository cameraRepository) {
         this.repo = repo;
+        this.cameraRepository = cameraRepository;
         this.grid = new Grid<>(Video.class);
         configureForm();
         configureGrid();
-        add(getToolbar(),getContent());
+        add(getToolbar(), getContent());
         listEntities();
         closeEditor();
 
@@ -76,7 +84,7 @@ public class VideoView extends VerticalLayout {
     }
 
     private void configureForm() {
-        form = new VideoForm();
+        form = new VideoForm(cameraRepository.findAll());
         form.setWidth("25em");
         form.addSaveListener(this::saveVideo); // <1>
         form.addDeleteListener(this::deleteVideo); // <2>
@@ -109,12 +117,9 @@ public class VideoView extends VerticalLayout {
 
     private void configureGrid() {
         grid.addClassNames("video-grid");
-      //  grid.setSizeFull();
-   //     grid.setColumns("id", "type");
-//        grid.addColumn(contact -> contact.getStatus().getName()).setHeader("Status");
-//        grid.addColumn(contact -> contact.getCompany().getName()).setHeader("Company");
-      //  grid.getColumns().forEach(col -> col.setAutoWidth(true));
-
+        grid.setNestedNullBehavior(Grid.NestedNullBehavior.ALLOW_NULLS);
+        grid.setColumns("id", "name", "camera.type");
+        grid.getColumnByKey("camera.type").setHeader("Camera");
         grid.asSingleSelect().addValueChangeListener(event ->
                 editEntity(event.getValue()));
     }
