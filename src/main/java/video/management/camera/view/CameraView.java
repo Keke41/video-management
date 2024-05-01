@@ -4,6 +4,7 @@ package video.management.camera.view;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -11,10 +12,12 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import software.xdev.vaadin.grid_exporter.GridExporter;
 import video.management.calibration.repository.CalibrationRepository;
 import video.management.calibration.view.CalibrationForm;
 import video.management.camera.entity.Camera;
 import video.management.camera.repository.CameraRepository;
+import video.management.web.JsonGridExporterProvider;
 import video.management.web.MainLayout;
 
 @PageTitle("Viki Szakdoga")
@@ -50,7 +53,14 @@ public class CameraView extends VerticalLayout {
         Button addButton = new Button("Add camera");
         addButton.addClickListener(click -> addEntity());
 
-        var toolbar = new HorizontalLayout(filterText, addButton);
+        Button exportButton = new Button(
+                "Export",
+                VaadinIcon.PRINT.create(),
+                e -> GridExporter.newWithDefaults(this.grid)
+                        .loadFromProvider(new JsonGridExporterProvider())
+                        .open());
+
+        var toolbar = new HorizontalLayout(filterText, addButton, exportButton);
 
         toolbar.addClassName("toolbar");
         return toolbar;

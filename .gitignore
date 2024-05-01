@@ -1,5 +1,11 @@
 .idea
 frontend/generated
+node_modules
+package.json
+package-lock.json
+tsconfig.json
+types.d.ts
+*.iml
 ### Intellij template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
