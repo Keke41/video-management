@@ -118,7 +118,7 @@ public class VideoView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("video-grid");
         grid.setNestedNullBehavior(Grid.NestedNullBehavior.ALLOW_NULLS);
-        grid.setColumns("id", "name", "camera.type");
+        grid.setColumns("id", "name", "camera.type", "length","time", "frequency","path");
         grid.getColumnByKey("camera.type").setHeader("Camera");
         grid.asSingleSelect().addValueChangeListener(event ->
                 editEntity(event.getValue()));

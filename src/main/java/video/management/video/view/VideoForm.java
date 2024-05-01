@@ -7,20 +7,36 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.datetimepicker.DateTimePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.BigDecimalField;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
 import video.management.camera.entity.Camera;
 import video.management.video.entity.Video;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 public class VideoForm extends FormLayout {
 
     TextField name = new TextField("Name");
+//    TextField length = new TextField("Length");
+//    TextField time = new TextField("Time");
+//    TimePicker time = new TimePicker();
+
+//    TimePicker time = new TimePicker("Time");
+    DateTimePicker time = new DateTimePicker("Time");
+
+//    TextField frequency = new TextField("Frequency");
+    BigDecimalField frequency = new BigDecimalField("Frequency");
+    TextField path = new TextField("Path");
 
     ComboBox<Camera> camera = new ComboBox<>("Camera");
 
@@ -35,7 +51,8 @@ public class VideoForm extends FormLayout {
         binder.bindInstanceFields(this);
         camera.setItems(cameras);
         camera.setItemLabelGenerator(Camera::getType);
-        add(name, camera,createButtonsLayout());
+//        add(name,length,time,frequency,path, camera,createButtonsLayout());
+        add(name,frequency,path, camera,time,createButtonsLayout());
     }
 
     private Component createButtonsLayout() {

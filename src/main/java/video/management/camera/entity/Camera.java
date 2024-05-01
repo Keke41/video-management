@@ -7,7 +7,7 @@ import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-import video.management.backend.entity.Calibration;
+import video.management.calibration.entity.Calibration;
 
 @Data
 @Entity
@@ -21,4 +21,6 @@ public class Camera {
 
     @OneToOne(mappedBy = "camera")
     private Calibration calibration;
+
+//    private String valami;
 }

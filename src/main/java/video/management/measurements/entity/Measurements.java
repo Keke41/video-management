@@ -1,29 +1,26 @@
-package video.management.backend.entity;
+package video.management.measurements.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import lombok.*;
 import lombok.experimental.Accessors;
+
 
 @Data
 @Accessors(fluent = true)
 @Entity
 
-public class Position {
+public class Measurements {
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long xMin;
+    private Long yaw;
 
-    private Long xMax;
+    private Long roll;
 
-    private Long yMin;
+    private Long pitch;
 
-    private Long yMax;
-
-    @OneToOne
-    private Object object;
+    private Long timeStamp;
 }

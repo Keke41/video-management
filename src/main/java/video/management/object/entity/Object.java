@@ -1,6 +1,6 @@
 // Ennek az osztálynak lehet, hogy valamilyen más nevet kellene kitalálni :)
 
-package video.management.backend.entity;
+package video.management.object.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

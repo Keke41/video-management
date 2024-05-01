@@ -1,4 +1,4 @@
-package video.management.backend.entity;
+package video.management.position.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,26 +6,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.*;
 import lombok.experimental.Accessors;
-import video.management.camera.entity.Camera;
-
+import video.management.object.entity.Object;
 
 @Data
 @Accessors(fluent = true)
 @Entity
-public class Calibration {
+
+public class Position {
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long pixelError;
+    private Long xMin;
 
-    private Long skew;
+    private Long xMax;
 
-    private Long focalLength;
+    private Long yMin;
 
-    private Long principalPoint;
+    private Long yMax;
 
     @OneToOne
-//    @JoinColumn(referencedColumnName = "id")
-    private Camera camera;
+    private Object object;
 }

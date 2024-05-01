@@ -1,4 +1,4 @@
-package video.management.backend.entity;
+package video.management.frame.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

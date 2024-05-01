@@ -11,6 +11,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import video.management.calibration.repository.CalibrationRepository;
+import video.management.calibration.view.CalibrationForm;
 import video.management.camera.entity.Camera;
 import video.management.camera.repository.CameraRepository;
 import video.management.web.MainLayout;
@@ -20,13 +22,17 @@ import video.management.web.MainLayout;
 @RouteAlias(value = "", layout = MainLayout.class)
 public class CameraView extends VerticalLayout {
     private final CameraRepository repo;
+    private final CalibrationRepository calibrationRepo;
     private final Grid<Camera> grid;
     private final TextField filterText = new TextField();
     private CameraForm form;
+    private CalibrationForm calibrationForm;
 
-    public CameraView(CameraRepository repo) {
+
+    public CameraView(CameraRepository repo, CalibrationRepository calibrationRepository) {
         this.repo = repo;
-        this.grid = new Grid<>(Camera.class);
+        this.calibrationRepo = calibrationRepository;
+        this.grid = new Grid<>(Camera.class); //continue  here??
         configureForm();
         configureGrid();
         add(getToolbar(),getContent());
@@ -52,7 +58,6 @@ public class CameraView extends VerticalLayout {
 
     private void updateList() {
         grid.setItems(repo.findAllByTypeStartsWithIgnoreCase(filterText.getValue()));
-
     }
 
 
@@ -66,6 +71,9 @@ public class CameraView extends VerticalLayout {
         } else {
             form.setCamera(camera);
             form.setVisible(true);
+
+//            calibrationForm.setCalibration(camera);
+//            calibrationForm.setVisible(true);
             addClassName("editing");
         }
     }
@@ -78,15 +86,28 @@ public class CameraView extends VerticalLayout {
 
     private void configureForm() {
         form = new CameraForm();
-        form.setWidth("25em");
+        form.setWidth("10em");
         form.addSaveListener(this::saveCamera); // <1>
         form.addDeleteListener(this::deleteCamera); // <2>
         form.addCloseListener(e -> closeEditor()); // <3>
+
+        calibrationForm = new CalibrationForm();
+        calibrationForm.setWidth("10em");
+        calibrationForm.addSaveListener(this::saveCalibration); // <1>
+//        calibrationForm.addDeleteListener(this::deleteCamera); // <2>
+//        calibrationForm.addCloseListener(e -> closeEditor()); // <3>
     }
 
     private void saveCamera(CameraForm.SaveEvent event) {
         //repo.saveCamera(event.getContact());
         repo.save(event.getCamera());
+        updateList();
+        closeEditor();
+    }
+
+    private void saveCalibration(CalibrationForm.SaveEvent event) {
+        //repo.saveCamera(event.getContact());
+        calibrationRepo.save(event.getCalibration());
         updateList();
         closeEditor();
     }
@@ -99,9 +120,12 @@ public class CameraView extends VerticalLayout {
     }
 
     private HorizontalLayout getContent() {
+//        HorizontalLayout content = new HorizontalLayout(grid, form, calibrationForm);
         HorizontalLayout content = new HorizontalLayout(grid, form);
-        content.setFlexGrow(2, grid);
+        content.setFlexGrow(5, grid);
         content.setFlexGrow(1, form);
+//        content.setFlexGrow(1, calibrationForm);
+
         content.addClassNames("content");
         content.setSizeFull();
         return content;
@@ -109,11 +133,14 @@ public class CameraView extends VerticalLayout {
 
     private void configureGrid() {
         grid.addClassNames("camera-grid");
-      //  grid.setSizeFull();
-   //     grid.setColumns("id", "type");
+//        grid.setSizeFull();
+//        grid.setColumns("id", "type"); // MAYBE I NEED THIS
 //        grid.addColumn(contact -> contact.getStatus().getName()).setHeader("Status");
 //        grid.addColumn(contact -> contact.getCompany().getName()).setHeader("Company");
       //  grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        grid.setNestedNullBehavior(Grid.NestedNullBehavior.ALLOW_NULLS);
+        grid.setColumns("id", "type", "calibration.type");
+        grid.getColumnByKey("calibration.type").setHeader("Calibration");
 
         grid.asSingleSelect().addValueChangeListener(event ->
                 editEntity(event.getValue()));
