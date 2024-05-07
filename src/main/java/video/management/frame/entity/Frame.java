@@ -20,6 +20,7 @@ public class Frame {
     //TODO videoannotáció  ID
 
     private Long index;
+    private String name; //temp
 
 
 }

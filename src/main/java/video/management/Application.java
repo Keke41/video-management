@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import video.management.annotation.entity.Annotation;
+import video.management.annotation.repository.AnnotationRepository;
 import video.management.calibration.entity.Calibration;
 import video.management.calibration.repository.CalibrationRepository;
 import video.management.camera.entity.Camera;
@@ -51,13 +53,14 @@ public class Application {
 //
 //    }
     @Bean
-    public CommandLineRunner loadVideoData(VideoRepository repository, CameraRepository cameraRepository, CalibrationRepository calibrationRepository) {
+    public CommandLineRunner loadVideoData(VideoRepository repository, CameraRepository cameraRepository, CalibrationRepository calibrationRepository, AnnotationRepository annotationRepository) {
         return (args) -> {
             for (int i = 0; i < 6; i++) {
 
 
                 Camera camera = new Camera();
                 Video video = new Video();
+                Annotation annotation = new Annotation();
 
 
                 Calibration calibration = new Calibration();
@@ -84,6 +87,10 @@ public class Application {
 
                 video.setCamera(camera);
                 repository.save(video);
+
+                annotation.setName("Name_" + i);
+                annotationRepository.save(annotation);
+
 
             }
 

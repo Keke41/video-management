@@ -8,6 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import video.management.annotation.view.AnnotationView;
 import video.management.camera.view.CameraView;
 import video.management.video.view.VideoView;
 
@@ -51,7 +52,8 @@ public class MainLayout extends AppLayout {
     private void createDrawer() {
         addToDrawer(new VerticalLayout(
                 new RouterLink("Camera", CameraView.class),
-                new RouterLink("Video", VideoView.class)
+                new RouterLink("Video", VideoView.class),
+                new RouterLink("Annotation", AnnotationView.class)
 
         ));
     }
