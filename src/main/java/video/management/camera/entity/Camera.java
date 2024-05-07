@@ -1,12 +1,7 @@
 package video.management.camera.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import video.management.calibration.entity.Calibration;
 
 @Data
@@ -19,8 +14,14 @@ public class Camera {
 
     private String type;
 
-    @OneToOne(mappedBy = "camera")
+    @OneToOne(mappedBy = "camera",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Calibration calibration;
 
-//    private String valami;
+    public void setCalibration(Calibration calibration){
+        this.calibration = calibration;
+        this.calibration.setCamera(this);
+    }
+
 }

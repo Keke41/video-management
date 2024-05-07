@@ -27,31 +27,6 @@ public class Application {
         SpringApplication.run(Application.class);
     }
 
-//    @Bean
-//    public CommandLineRunner loadData(CameraRepository repository) {
-//        return (args) -> {
-//            for (int i = 0; i < 6; i++) {
-//                Camera camera = new Camera();
-//                camera.setType("camera" + i);
-//                repository.save(camera);
-//            }
-//
-////            repository.save(new Camera().setType("type1"));
-////            repository.save(new Camera().type("type2"));
-////            repository.save(new Camera().type("type3"));
-////            repository.save(new Camera().type("type4"));
-////            repository.save(new Camera().type("type5"));
-////            repository.save(new Camera().type("type6"));
-//
-////            repository.save(new Camera("type1"));
-////            repository.save(new Camera("type2"));
-////            repository.save(new Camera("type3"));
-////            repository.save(new Camera("type4"));
-////            repository.save(new Camera("type5"));
-////            repository.save(new Camera("type6"));
-//        };
-//
-//    }
     @Bean
     public CommandLineRunner loadVideoData(VideoRepository repository, CameraRepository cameraRepository, CalibrationRepository calibrationRepository, AnnotationRepository annotationRepository) {
         return (args) -> {
@@ -61,37 +36,30 @@ public class Application {
                 Camera camera = new Camera();
                 Video video = new Video();
                 Annotation annotation = new Annotation();
-
-
                 Calibration calibration = new Calibration();
-                calibration.setSkew_1((float) i);
 
-                calibrationRepository.save(calibration);
-//                calibration.setType("dnfsajkl");
+                calibration.setSkew_1(BigDecimal.valueOf(i));
+//                calibration.setCamera(camera);
+
+//                Calibration savedCalibration = calibrationRepository.save(calibration);
 
 
                 camera.setType("camera_" + i);
                 camera.setCalibration(calibration);
-//                camera.setValami("valami");
                 video.setName("type_" + i);
                 video.setLength(new Time(01, 23,i));
-//                video.setTime(new Time(12,23,i));
-//                video.setTime(LocalTime.of(12,32,i));
                 video.setTime(LocalDateTime.of(2021,11,11,12,23,i));
                 video.setFrequency(BigDecimal.valueOf(i));
                 video.setPath("Path_"+i);
-//                calibration.setType("calib_type_" + i);
 
-                cameraRepository.save(camera);
+                Camera save = cameraRepository.save(camera);
 
 
-                video.setCamera(camera);
+                video.setCamera(save);
                 repository.save(video);
 
                 annotation.setName("Name_" + i);
                 annotationRepository.save(annotation);
-
-
             }
 
         };

@@ -6,27 +6,19 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
-import video.management.calibration.entity.Calibration;
+import video.management.calibration.view.CalibrationField;
 import video.management.camera.entity.Camera;
 
 public class CameraForm extends FormLayout {
 
     TextField type = new TextField("Type");
-
-//    TextField skew_1 = new TextField("Skew");
-//    ComboBox<Calibration> skew_1 = new ComboBox<>("Skew_1");
-
-    TextField skew1Field = new TextField("Skew_1");
-    TextField skew2Field = new TextField("Skew_2");
-
+    CalibrationField calibration = new CalibrationField("Calibration");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -36,25 +28,9 @@ public class CameraForm extends FormLayout {
 
     public CameraForm() {
         binder.bindInstanceFields(this);
-        add(type, skew1Field, skew2Field, createButtonsLayout());
-//        add(type,skew_1, createButtonsLayout());
-//        skew_1.setItemLabelGenerator(this::generateSkewLabel);
+        add(type, calibration, createButtonsLayout());
     }
 
-
-//    private String generateSkewLabel(Calibration calibration) {
-//        if (calibration != null && calibration.getSkew_1() != 0) {
-//            return "Skew_1: " + calibration.getSkew_1();
-//        }
-//        return "Skew_1: Not Available";
-//    }
-
-//    private String generateSkewLabel(Calibration calibration) {
-//        if (calibration != null && calibration.getSkew_1() != null) {
-//            return "Skew_1: " + calibration.getSkew_1();
-//        }
-//        return "Skew_1: Not Available";
-//    }
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -79,41 +55,10 @@ public class CameraForm extends FormLayout {
     }
 
 
-//    public void setContact(Camera camera) {
-//        binder.setBean(camera); // <1>
-//    }
-
-
-//   // 09/04/2024 should I update this method?
     public void setCamera(Camera camera) {
         binder.setBean(camera);
     }
 
-//    public void setCamera(Camera camera) {
-//        binder.setBean(camera);
-//        if (camera != null && camera.getCalibration() != null) {
-//            Calibration calibration = camera.getCalibration();
-//            skew1Field.setValue(String.valueOf(calibration.getSkew_1()));
-//            skew2Field.setValue(String.valueOf(calibration.getSkew_2()));
-//        }
-//    }
-
-    // another try
-
-//    public void setCamera(Camera camera) {
-//        binder.setBean(camera);
-//        if (camera != null && camera.getCalibration() != null) {
-//            Calibration calibration = camera.getCalibration();
-////            System.out.println("Calibration: " + calibration); // Debug print
-//            System.out.println("Skew 1: " + calibration.getSkew_1()); // Debug print
-//            System.out.println("Skew 2: " + calibration.getSkew_2()); // Debug print
-//            skew1Field.setValue(String.valueOf(calibration.getSkew_1()));
-//            skew2Field.setValue(String.valueOf(calibration.getSkew_2()));
-//        }
-//    }
-
-
-    // Events
     public static abstract class CameraFormEvent extends ComponentEvent<CameraForm> {
         private Camera camera;
 
@@ -121,7 +66,6 @@ public class CameraForm extends FormLayout {
             super(source, false);
             this.camera = camera;
         }
-
         public Camera getCamera() {
             return camera;
         }
@@ -156,11 +100,6 @@ public class CameraForm extends FormLayout {
     public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
         return addListener(CloseEvent.class, listener);
     }
-
-
-
-
-
 
 
 }
