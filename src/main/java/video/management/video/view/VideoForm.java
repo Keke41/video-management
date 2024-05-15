@@ -69,7 +69,6 @@ public class VideoForm extends FormLayout {
         }
     }
 
-
     public void setVideo(Video video) {
         binder.setBean(video);}
 
