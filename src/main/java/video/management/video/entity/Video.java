@@ -24,7 +24,7 @@ public class Video {
 
     private String name;
 
-    private Time length;
+    private String length;
 
     private LocalDateTime time;
 

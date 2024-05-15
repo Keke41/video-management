@@ -58,7 +58,8 @@ public class Application {
                 camera.setCalibration(calibration);
 
                 video.setName("type_" + i);
-                video.setLength(new Time(01, 23,i));
+                video.setLength("00:0"+i);
+//                video.setLength(new Time(01, 23,i));
                 video.setTime(LocalDateTime.of(2021,11,11,12,23,i));
                 video.setFrequency(BigDecimal.valueOf(i));
                 video.setPath("Path_"+i);

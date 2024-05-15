@@ -29,6 +29,7 @@ public class VideoForm extends FormLayout {
     DateTimePicker time = new DateTimePicker("Time");
 //    TimePicker length = new TimePicker("Length"); // TODO !!!!
 
+    TextField length = new TextField("Length");
     BigDecimalField frequency = new BigDecimalField("Frequency");
     TextField path = new TextField("Path");
     ComboBox<Camera> camera = new ComboBox<>("Camera");
@@ -43,7 +44,7 @@ public class VideoForm extends FormLayout {
         binder.bindInstanceFields(this);
         camera.setItems(cameras);
         camera.setItemLabelGenerator(Camera::getType);
-        add(name, camera,time, frequency,path,createButtonsLayout());
+        add(name, camera,length, time, frequency,path,createButtonsLayout());
     }
 
     private Component createButtonsLayout() {

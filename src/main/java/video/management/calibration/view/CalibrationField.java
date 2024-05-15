@@ -50,7 +50,6 @@ public class CalibrationField extends CustomField<Calibration> {
         add(layout);
     }
 
-
     @Override
     protected Calibration generateModelValue() {
         Calibration modelValue = new Calibration();
@@ -67,34 +66,34 @@ public class CalibrationField extends CustomField<Calibration> {
                 .ifPresent(modelValue::setSkew_2);
         Optional.of(focalLength_1)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setFocalLength_1);
         Optional.of(focalLength_2)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setFocalLength_2);
         Optional.of(focalLength_3)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setFocalLength_3);
         Optional.of(focalLength_4)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setFocalLength_4);
         Optional.of(principalPoint_1)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setPrincipalPoint_1);
         Optional.of(principalPoint_2)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setPrincipalPoint_2);
         Optional.of(principalPoint_3)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setPrincipalPoint_3);
         Optional.of(principalPoint_4)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setPrincipalPoint_4);
         Optional.of(pixelError_1)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_1);
+                .ifPresent(modelValue::setPixelError_1);
         Optional.of(pixelError_2)
                 .map(BigDecimalField::getValue)
-                .ifPresent(modelValue::setSkew_2);
+                .ifPresent(modelValue::setPixelError_2);
 
         return modelValue;
     }
@@ -113,35 +112,37 @@ public class CalibrationField extends CustomField<Calibration> {
                 .map(Calibration::getSkew_2)
                 .ifPresent(skew_2::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getFocalLength_1)
                 .ifPresent(focalLength_1::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getFocalLength_2)
                 .ifPresent(focalLength_2::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getFocalLength_3)
                 .ifPresent(focalLength_3::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getFocalLength_4)
                 .ifPresent(focalLength_4::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getPrincipalPoint_1)
                 .ifPresent(principalPoint_1::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getPrincipalPoint_2)
                 .ifPresent(principalPoint_2::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getPrincipalPoint_3)
                 .ifPresent(principalPoint_3::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getPrincipalPoint_4)
                 .ifPresent(principalPoint_4::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_1)
+                .map(Calibration::getPixelError_1)
                 .ifPresent(pixelError_1::setValue);
         Optional.ofNullable(value)
-                .map(Calibration::getSkew_2)
+                .map(Calibration::getPixelError_2)
                 .ifPresent(pixelError_2::setValue);
-
     }
+
 }
+
+
