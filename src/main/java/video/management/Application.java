@@ -17,7 +17,6 @@ import video.management.video.repository.VideoRepository;
 import java.math.BigDecimal;
 import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Slf4j
 @SpringBootApplication
@@ -28,24 +27,36 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner loadVideoData(VideoRepository repository, CameraRepository cameraRepository, CalibrationRepository calibrationRepository, AnnotationRepository annotationRepository) {
+    public CommandLineRunner loadVideoData(
+            VideoRepository videoRepository,
+            CameraRepository cameraRepository,
+            CalibrationRepository calibrationRepository,
+            AnnotationRepository annotationRepository) {
         return (args) -> {
-            for (int i = 0; i < 6; i++) {
-
+            for (int i = 1; i < 5; i++) {
 
                 Camera camera = new Camera();
                 Video video = new Video();
                 Annotation annotation = new Annotation();
                 Calibration calibration = new Calibration();
 
-                calibration.setSkew_1(BigDecimal.valueOf(i));
-//                calibration.setCamera(camera);
-
-//                Calibration savedCalibration = calibrationRepository.save(calibration);
-
-
                 camera.setType("camera_" + i);
+
+                calibration.setSkew_1(BigDecimal.valueOf(i));
+                calibration.setSkew_2(BigDecimal.valueOf(i));
+                calibration.setFocalLength_1(BigDecimal.valueOf(i));
+                calibration.setFocalLength_2(BigDecimal.valueOf(i));
+                calibration.setFocalLength_3(BigDecimal.valueOf(i));
+                calibration.setFocalLength_4(BigDecimal.valueOf(i));
+                calibration.setPrincipalPoint_1(BigDecimal.valueOf(i));
+                calibration.setPrincipalPoint_2(BigDecimal.valueOf(i));
+                calibration.setPrincipalPoint_3(BigDecimal.valueOf(i));
+                calibration.setPrincipalPoint_4(BigDecimal.valueOf(i));
+                calibration.setPixelError_1(BigDecimal.valueOf(i));
+                calibration.setPixelError_2(BigDecimal.valueOf(i));
+
                 camera.setCalibration(calibration);
+
                 video.setName("type_" + i);
                 video.setLength(new Time(01, 23,i));
                 video.setTime(LocalDateTime.of(2021,11,11,12,23,i));
@@ -53,12 +64,11 @@ public class Application {
                 video.setPath("Path_"+i);
 
                 Camera save = cameraRepository.save(camera);
-
-
                 video.setCamera(save);
-                repository.save(video);
+                videoRepository.save(video);
 
                 annotation.setName("Name_" + i);
+                annotation.setComment("Comment_" + i);
                 annotationRepository.save(annotation);
             }
 

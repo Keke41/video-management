@@ -18,7 +18,7 @@ import video.management.annotation.entity.Annotation;
 public class AnnotationForm extends FormLayout {
 
     TextField name = new TextField("Name");
-
+    TextField comment = new TextField("Comment");
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -28,23 +28,9 @@ public class AnnotationForm extends FormLayout {
 
     public AnnotationForm() {
         binder.bindInstanceFields(this);
-        add(name, createButtonsLayout());
+        add(name,comment,createButtonsLayout());
     }
 
-
-//    private String generateSkewLabel(Calibration calibration) {
-//        if (calibration != null && calibration.getSkew_1() != 0) {
-//            return "Skew_1: " + calibration.getSkew_1();
-//        }
-//        return "Skew_1: Not Available";
-//    }
-
-//    private String generateSkewLabel(Calibration calibration) {
-//        if (calibration != null && calibration.getSkew_1() != null) {
-//            return "Skew_1: " + calibration.getSkew_1();
-//        }
-//        return "Skew_1: Not Available";
-//    }
 
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -68,39 +54,9 @@ public class AnnotationForm extends FormLayout {
         }
     }
 
-
-//    public void setContact(Camera camera) {
-//        binder.setBean(camera); // <1>
-//    }
-
-
-//   // 09/04/2024 should I update this method?
     public void setAnnotation(Annotation annotation) {
         binder.setBean(annotation);
     }
-
-//    public void setCamera(Camera camera) {
-//        binder.setBean(camera);
-//        if (camera != null && camera.getCalibration() != null) {
-//            Calibration calibration = camera.getCalibration();
-//            skew1Field.setValue(String.valueOf(calibration.getSkew_1()));
-//            skew2Field.setValue(String.valueOf(calibration.getSkew_2()));
-//        }
-//    }
-
-    // another try
-
-//    public void setCamera(Camera camera) {
-//        binder.setBean(camera);
-//        if (camera != null && camera.getCalibration() != null) {
-//            Calibration calibration = camera.getCalibration();
-////            System.out.println("Calibration: " + calibration); // Debug print
-//            System.out.println("Skew 1: " + calibration.getSkew_1()); // Debug print
-//            System.out.println("Skew 2: " + calibration.getSkew_2()); // Debug print
-//            skew1Field.setValue(String.valueOf(calibration.getSkew_1()));
-//            skew2Field.setValue(String.valueOf(calibration.getSkew_2()));
-//        }
-//    }
 
 
     // Events
@@ -147,11 +103,4 @@ public class AnnotationForm extends FormLayout {
         return addListener(CloseEvent.class, listener);
     }
 
-
-
-
-
-
-
 }
-

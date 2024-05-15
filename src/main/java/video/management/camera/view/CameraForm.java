@@ -31,7 +31,6 @@ public class CameraForm extends FormLayout {
         add(type, calibration, createButtonsLayout());
     }
 
-
     private Component createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
@@ -53,7 +52,6 @@ public class CameraForm extends FormLayout {
             fireEvent(new SaveEvent(this, binder.getBean())); // <6>
         }
     }
-
 
     public void setCamera(Camera camera) {
         binder.setBean(camera);
@@ -101,6 +99,4 @@ public class CameraForm extends FormLayout {
         return addListener(CloseEvent.class, listener);
     }
 
-
 }
-

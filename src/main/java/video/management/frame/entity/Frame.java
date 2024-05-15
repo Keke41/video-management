@@ -6,8 +6,6 @@ import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-
-
 @Data
 @Accessors(fluent = true)
 @Entity

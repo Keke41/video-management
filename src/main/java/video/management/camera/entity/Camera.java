@@ -23,5 +23,4 @@ public class Camera {
         this.calibration = calibration;
         this.calibration.setCamera(this);
     }
-
 }

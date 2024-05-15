@@ -13,14 +13,6 @@ import video.management.camera.view.CameraView;
 import video.management.video.view.VideoView;
 
 public class MainLayout extends AppLayout {
-    //private final SecurityService securityService;
-
-//    public MainLayout(SecurityService securityService) {
-//        this.securityService = securityService;
-//        createHeader();
-//        createDrawer();
-//    }
-
 
     public MainLayout() {
         createHeader();
@@ -32,21 +24,16 @@ public class MainLayout extends AppLayout {
             LumoUtility.FontSize.LARGE,
             LumoUtility.Margin.MEDIUM);
 
-//        String u = securityService.getAuthenticatedUser().getUsername();
-//        Button logout = new Button("Log out " + u, e -> securityService.logout()); // <2>
-
-//        var header = new HorizontalLayout(new DrawerToggle(), logo, logout);
         var header = new HorizontalLayout(new DrawerToggle(), logo);
 
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-        header.expand(logo); // <4>
+        header.expand(logo);
         header.setWidthFull();
         header.addClassNames(
             LumoUtility.Padding.Vertical.NONE,
             LumoUtility.Padding.Horizontal.MEDIUM);
 
-        addToNavbar(header); 
-
+        addToNavbar(header);
     }
 
     private void createDrawer() {
@@ -54,7 +41,6 @@ public class MainLayout extends AppLayout {
                 new RouterLink("Camera", CameraView.class),
                 new RouterLink("Video", VideoView.class),
                 new RouterLink("Annotation", AnnotationView.class)
-
         ));
     }
 }

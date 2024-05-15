@@ -1,5 +1,3 @@
-// Ennek az osztálynak lehet, hogy valamilyen más nevet kellene kitalálni :)
-
 package video.management.object.entity;
 
 import jakarta.persistence.Entity;

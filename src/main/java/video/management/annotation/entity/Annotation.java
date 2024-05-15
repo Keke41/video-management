@@ -7,7 +7,6 @@ import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 import video.management.video.entity.Video;
 
 

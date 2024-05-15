@@ -20,26 +20,18 @@ import com.vaadin.flow.shared.Registration;
 import video.management.camera.entity.Camera;
 import video.management.video.entity.Video;
 
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.List;
 
 public class VideoForm extends FormLayout {
 
     TextField name = new TextField("Name");
-//    TextField length = new TextField("Length");
-//    TextField time = new TextField("Time");
-//    TimePicker time = new TimePicker();
 
-//    TimePicker time = new TimePicker("Time");
     DateTimePicker time = new DateTimePicker("Time");
+//    TimePicker length = new TimePicker("Length"); // TODO !!!!
 
-//    TextField frequency = new TextField("Frequency");
     BigDecimalField frequency = new BigDecimalField("Frequency");
     TextField path = new TextField("Path");
-
     ComboBox<Camera> camera = new ComboBox<>("Camera");
-
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
@@ -51,8 +43,7 @@ public class VideoForm extends FormLayout {
         binder.bindInstanceFields(this);
         camera.setItems(cameras);
         camera.setItemLabelGenerator(Camera::getType);
-//        add(name,length,time,frequency,path, camera,createButtonsLayout());
-        add(name,frequency,path, camera,time,createButtonsLayout());
+        add(name, camera,time, frequency,path,createButtonsLayout());
     }
 
     private Component createButtonsLayout() {
@@ -80,7 +71,6 @@ public class VideoForm extends FormLayout {
 
     public void setVideo(Video video) {
         binder.setBean(video);}
-
 
     // Events
     public static abstract class VideoFormEvent extends ComponentEvent<VideoForm> {
@@ -127,10 +117,4 @@ public class VideoForm extends FormLayout {
     }
 
 
-
-
-
-
-
 }
-

@@ -4,27 +4,24 @@ package video.management.video.view;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import video.management.camera.entity.Camera;
+import software.xdev.vaadin.grid_exporter.GridExporter;
 import video.management.video.entity.Video;
 import video.management.video.repository.VideoRepository;
 import video.management.camera.repository.CameraRepository;
+import video.management.web.JsonGridExporterProvider;
 import video.management.web.MainLayout;
 
-import java.util.Collections;
-import java.util.Optional;
-
-@PageTitle("Viki Szakdoga")
+@PageTitle("Video Management")
 @Route(value = "video", layout = MainLayout.class)
 public class VideoView extends VerticalLayout {
     private final VideoRepository repo;
-
     private final CameraRepository cameraRepository;
     private final Grid<Video> grid;
     private final TextField filterText = new TextField();
@@ -39,7 +36,6 @@ public class VideoView extends VerticalLayout {
         add(getToolbar(), getContent());
         listEntities();
         closeEditor();
-
     }
 
     private Component getToolbar() {
@@ -51,7 +47,14 @@ public class VideoView extends VerticalLayout {
         Button addButton = new Button("Add video");
         addButton.addClickListener(click -> addEntity());
 
-        var toolbar = new HorizontalLayout(filterText, addButton);
+        Button exportButton = new Button(
+                "Export",
+                VaadinIcon.PRINT.create(),
+                e -> GridExporter.newWithDefaults(this.grid)
+                        .loadFromProvider(new JsonGridExporterProvider())
+                        .open());
+
+        var toolbar = new HorizontalLayout(filterText, addButton, exportButton);
 
         toolbar.addClassName("toolbar");
         return toolbar;
@@ -85,30 +88,32 @@ public class VideoView extends VerticalLayout {
 
     private void configureForm() {
         form = new VideoForm(cameraRepository.findAll());
+//        form.setWidth("25em");
         form.setWidth("25em");
-        form.addSaveListener(this::saveVideo); // <1>
-        form.addDeleteListener(this::deleteVideo); // <2>
-        form.addCloseListener(e -> closeEditor()); // <3>
+//        form.setHeight("5em");
+        grid.setWidthFull();
+        grid.setHeight("18em");
+
+        form.addSaveListener(this::saveVideo);
+        form.addDeleteListener(this::deleteVideo);
+        form.addCloseListener(e -> closeEditor());
     }
 
     private void saveVideo(VideoForm.SaveEvent event) {
-        //repo.saveCamera(event.getContact());
         repo.save(event.getVideo());
         updateList();
         closeEditor();
     }
 
     private void deleteVideo(VideoForm.DeleteEvent event) {
-        //repo.deleteCamera(event.getContact());
         repo.delete(event.getVideo());
         updateList();
         closeEditor();
     }
 
-    private HorizontalLayout getContent() {
-        HorizontalLayout content = new HorizontalLayout(grid, form);
-//        HorizontalLayout content = new HorizontalLayout(grid);
-        content.setFlexGrow(2, grid);
+    private VerticalLayout getContent() {
+        VerticalLayout content = new VerticalLayout(grid, form);
+        content.setFlexGrow(5, grid);
         content.setFlexGrow(1, form);
         content.addClassNames("content");
         content.setSizeFull();
@@ -128,5 +133,4 @@ public class VideoView extends VerticalLayout {
         grid.asSingleSelect().clear();
         editEntity(new Video());
     }
-
 }

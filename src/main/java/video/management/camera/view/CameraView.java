@@ -20,7 +20,7 @@ import video.management.web.MainLayout;
 
 import java.util.List;
 
-@PageTitle("Viki Szakdoga")
+@PageTitle("Video Management")
 @Route(value = "camera", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class CameraView extends VerticalLayout {
@@ -28,7 +28,6 @@ public class CameraView extends VerticalLayout {
     private final Grid<Camera> grid;
     private final TextField filterText = new TextField();
     private CameraForm form;
-
 
     public CameraView(CameraRepository repo) {
         this.repo = repo;
@@ -38,7 +37,6 @@ public class CameraView extends VerticalLayout {
         add(getToolbar(),getContent());
         listEntities();
         closeEditor();
-
     }
 
     private Component getToolbar() {
@@ -92,11 +90,12 @@ public class CameraView extends VerticalLayout {
 
     private void configureForm() {
         form = new CameraForm();
-        form.setWidth("10em");
+        form.setWidth("25em");
+        grid.setWidthFull();
+        grid.setHeight("14em");
         form.addSaveListener(this::saveCamera); // <1>
         form.addDeleteListener(this::deleteCamera); // <2>
         form.addCloseListener(e -> closeEditor()); // <3>
-
     }
 
     private void saveCamera(CameraForm.SaveEvent event) {
@@ -105,7 +104,6 @@ public class CameraView extends VerticalLayout {
         closeEditor();
     }
 
-
     private void deleteCamera(CameraForm.DeleteEvent event) {
         //repo.deleteCamera(event.getContact());
         repo.delete(event.getCamera());
@@ -113,8 +111,8 @@ public class CameraView extends VerticalLayout {
         closeEditor();
     }
 
-    private HorizontalLayout getContent() {
-        HorizontalLayout content = new HorizontalLayout(grid, form);
+    private VerticalLayout getContent() {
+        VerticalLayout content = new VerticalLayout(grid, form);
         content.setFlexGrow(5, grid);
         content.setFlexGrow(1, form);
 
