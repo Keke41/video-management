@@ -16,9 +16,9 @@ public class Calibration {
     @GeneratedValue
     private Long id;
 
-    private BigDecimal skew_1, skew_2;
-    private BigDecimal focalLength_1, focalLength_2, focalLength_3, focalLength_4;
-    private BigDecimal principalPoint_1, principalPoint_2, principalPoint_3, principalPoint_4;
+    private BigDecimal skew;
+    private BigDecimal focalLength_1, focalLength_2;
+    private BigDecimal principalPoint_1, principalPoint_2;
     private BigDecimal pixelError_1, pixelError_2;
 
     @OneToOne

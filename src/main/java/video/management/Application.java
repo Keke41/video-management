@@ -42,16 +42,11 @@ public class Application {
 
                 camera.setType("camera_" + i);
 
-                calibration.setSkew_1(BigDecimal.valueOf(i));
-                calibration.setSkew_2(BigDecimal.valueOf(i));
+                calibration.setSkew(BigDecimal.valueOf(i));
                 calibration.setFocalLength_1(BigDecimal.valueOf(i));
                 calibration.setFocalLength_2(BigDecimal.valueOf(i));
-                calibration.setFocalLength_3(BigDecimal.valueOf(i));
-                calibration.setFocalLength_4(BigDecimal.valueOf(i));
                 calibration.setPrincipalPoint_1(BigDecimal.valueOf(i));
                 calibration.setPrincipalPoint_2(BigDecimal.valueOf(i));
-                calibration.setPrincipalPoint_3(BigDecimal.valueOf(i));
-                calibration.setPrincipalPoint_4(BigDecimal.valueOf(i));
                 calibration.setPixelError_1(BigDecimal.valueOf(i));
                 calibration.setPixelError_2(BigDecimal.valueOf(i));
 
