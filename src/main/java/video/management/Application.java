@@ -74,27 +74,27 @@ public class Application {
                 Annotation annotation_1 = new Annotation();
                 Calibration calibration_1 = new Calibration();
 
-                camera_1.setType("Canon EOS 5D Mark IV");
+                camera_1.setType("DJI Phantom 4 Pro");
 
-                calibration_1.setSkew(BigDecimal.valueOf(0.1));
-                calibration_1.setFocalLength_1(BigDecimal.valueOf(850));
-                calibration_1.setFocalLength_2(BigDecimal.valueOf(850));
+                calibration_1.setSkew(BigDecimal.valueOf(0.02));
+                calibration_1.setFocalLength_1(BigDecimal.valueOf(820));
+                calibration_1.setFocalLength_2(BigDecimal.valueOf(820));
                 calibration_1.setPrincipalPoint_1(BigDecimal.valueOf(320));
                 calibration_1.setPrincipalPoint_2(BigDecimal.valueOf(240));
                 calibration_1.setPixelError_1(BigDecimal.valueOf(0.2));
-                calibration_1.setPixelError_2(BigDecimal.valueOf(0.3));
+                calibration_1.setPixelError_2(BigDecimal.valueOf(0.25));
 
                 camera_1.setCalibration(calibration_1);
 
-                video_1.setName("Name_1");
+                video_1.setName("Rivers_and_Roads.mp4");
                 video_1.setLength("12:48");
 //                video.setLength(new Time(01, 23,i));
-                video_1.setTime(LocalDateTime.of(2021,11,15,04,23,01));
+                video_1.setTime(LocalDateTime.of(2021,11,15,04,23,00));
                 video_1.setFrequency(BigDecimal.valueOf(25));
-                video_1.setPath("Path_1");
+                video_1.setPath("C:\\Users\\Public");
 
-                Camera save = cameraRepository.save(camera_1);
-                video_1.setCamera(save);
+                Camera save_1 = cameraRepository.save(camera_1);
+                video_1.setCamera(save_1);
                 videoRepository.save(video_1);
 
                 annotation_1.setName("Name_1");
@@ -107,24 +107,24 @@ public class Application {
             Annotation annotation_2 = new Annotation();
             Calibration calibration_2 = new Calibration();
 
-            camera_2.setType("iPhone 13 Pro");
+            camera_2.setType("DJI Mavic Air 2");
 
-            calibration_2.setSkew(BigDecimal.valueOf(0.2));
-            calibration_2.setFocalLength_1(BigDecimal.valueOf(400));
-            calibration_2.setFocalLength_2(BigDecimal.valueOf(400));
+            calibration_2.setSkew(BigDecimal.valueOf(0.01));
+            calibration_2.setFocalLength_1(BigDecimal.valueOf(850));
+            calibration_2.setFocalLength_2(BigDecimal.valueOf(850));
             calibration_2.setPrincipalPoint_1(BigDecimal.valueOf(315));
-            calibration_2.setPrincipalPoint_2(BigDecimal.valueOf(245));
-            calibration_2.setPixelError_1(BigDecimal.valueOf(0.5));
-            calibration_2.setPixelError_2(BigDecimal.valueOf(0.4));
+            calibration_2.setPrincipalPoint_2(BigDecimal.valueOf(235));
+            calibration_2.setPixelError_1(BigDecimal.valueOf(0.15));
+            calibration_2.setPixelError_2(BigDecimal.valueOf(0.2));
 
             camera_2.setCalibration(calibration_2);
 
-            video_2.setName("Name_2");
+            video_2.setName("Mountains_Valleys.mp4");
             video_2.setLength("51:16");
 //                video.setLength(new Time(01, 23,i));
-            video_2.setTime(LocalDateTime.of(2024,1,8,02,00,00));
+            video_2.setTime(LocalDateTime.of(2024,1,8,02,14,00));
             video_2.setFrequency(BigDecimal.valueOf(24));
-            video_2.setPath("Path_2");
+            video_2.setPath("D:\\Videos");
 
             Camera save_2 = cameraRepository.save(camera_2);
             video_2.setCamera(save_2);
@@ -140,24 +140,24 @@ public class Application {
             Annotation annotation_3 = new Annotation();
             Calibration calibration_3 = new Calibration();
 
-            camera_3.setType("GoPro Hero 9");
+            camera_3.setType("Parrot Anafi");
 
-            calibration_3.setSkew(BigDecimal.valueOf(0.15));
-            calibration_3.setFocalLength_1(BigDecimal.valueOf(550));
-            calibration_3.setFocalLength_2(BigDecimal.valueOf(550));
-            calibration_3.setPrincipalPoint_1(BigDecimal.valueOf(300));
-            calibration_3.setPrincipalPoint_2(BigDecimal.valueOf(250));
+            calibration_3.setSkew(BigDecimal.valueOf(0.12));
+            calibration_3.setFocalLength_1(BigDecimal.valueOf(780));
+            calibration_3.setFocalLength_2(BigDecimal.valueOf(780));
+            calibration_3.setPrincipalPoint_1(BigDecimal.valueOf(325));
+            calibration_3.setPrincipalPoint_2(BigDecimal.valueOf(245));
             calibration_3.setPixelError_1(BigDecimal.valueOf(0.3));
-            calibration_3.setPixelError_2(BigDecimal.valueOf(0.2));
+            calibration_3.setPixelError_2(BigDecimal.valueOf(0.35));
 
             camera_3.setCalibration(calibration_3);
 
-            video_3.setName("Name_3");
+            video_3.setName("Waves_and_Dunes.mp4");
             video_3.setLength("05:42");
 //                video.setLength(new Time(01, 23,i));
-            video_3.setTime(LocalDateTime.of(2022,2,2,22,00,00));
+            video_3.setTime(LocalDateTime.of(2022,2,2,22,28,00));
             video_3.setFrequency(BigDecimal.valueOf(29.97));
-            video_3.setPath("Path_3");
+            video_3.setPath("D:\\Videos");
 
             Camera save_3 = cameraRepository.save(camera_3);
             video_3.setCamera(save_3);
@@ -174,24 +174,24 @@ public class Application {
             Annotation annotation_4 = new Annotation();
             Calibration calibration_4 = new Calibration();
 
-            camera_4.setType("Logitech C920");
+            camera_4.setType("Autel Evo II");
 
             calibration_4.setSkew(BigDecimal.valueOf(0.1));
-            calibration_4.setFocalLength_1(BigDecimal.valueOf(500));
-            calibration_4.setFocalLength_2(BigDecimal.valueOf(500));
-            calibration_4.setPrincipalPoint_1(BigDecimal.valueOf(310));
-            calibration_4.setPrincipalPoint_2(BigDecimal.valueOf(230));
-            calibration_4.setPixelError_1(BigDecimal.valueOf(0.4));
+            calibration_4.setFocalLength_1(BigDecimal.valueOf(810));
+            calibration_4.setFocalLength_2(BigDecimal.valueOf(810));
+            calibration_4.setPrincipalPoint_1(BigDecimal.valueOf(330));
+            calibration_4.setPrincipalPoint_2(BigDecimal.valueOf(250));
+            calibration_4.setPixelError_1(BigDecimal.valueOf(0.25));
             calibration_4.setPixelError_2(BigDecimal.valueOf(0.3));
 
             camera_4.setCalibration(calibration_4);
 
-            video_4.setName("Name_4");
+            video_4.setName("Forest_Trails.mp4");
             video_4.setLength("14:08");
 //                video.setLength(new Time(01, 23,i));
-            video_4.setTime(LocalDateTime.of(2023,3,15,22,00,00));
+            video_4.setTime(LocalDateTime.of(2023,3,15,22,41,00));
             video_4.setFrequency(BigDecimal.valueOf(60));
-            video_4.setPath("Path_4");
+            video_4.setPath("C:\\Users\\Public");
 
             Camera save_4 = cameraRepository.save(camera_4);
             video_4.setCamera(save_4);
